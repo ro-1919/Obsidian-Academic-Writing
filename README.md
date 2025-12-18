@@ -80,7 +80,7 @@ El workflow en pocas palabras:
 - Obsidian lo utilizo para la escritura y la toma de notas de lecturas, teoría e ideas. Esta aplicación también permite enlazar las notas para hacerlas dinámicas. Esta es una de las razones por las que prefiero manter el 'md' en Obsidian como el archivo principal, además de que es mucho más sencillo exportarlo, editarlo y cambiarle estilo de citación.
 - Zotero siempre está abierto ya que administra las citas y los archivos PDFs relacionado con estas. La integración con Better Bibtex y sus citation keys permite citar fácil y no interrumpir la escritura.
 - En caso de tener que compartir un archivo, utilizo Pandoc para exportar el documento en Obsidian 'md' a 'docx'. El resultado es un archivo listo para exportar, sólo necesita hacer una _refresh_ de zotero para elegir qué tipo de estilo de cita se prefiere y general después la bibliografía.
-- NOTA: Pandoc puede generar automáticamente un estilo, sin tener que usar zotero. Sin embargo, mantener zotero en el archivo word hace que las citas sean dinámicas. En caso de editar el archivo word, modificar citas o transferir una parte a un nuevo archivo, las referencias seguirán sido reconocidas por zotero.
+- NOTA: Pandoc puede generar automáticamente un estilo, sin tener que usar zotero. Sin embargo, mantener zotero en el archivo word hace que las citas sean dinámicas. En caso de editar el archivo word, modificar citas o transferir una parte a un nuevo archivo, zotero seguirá reconociendo las referencias y se podrán cambiar a otros estilos de citación fácilmente.
 
 Zotero
 1. Descargar [Zotero](https://www.zotero.org/)
