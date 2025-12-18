@@ -15,7 +15,7 @@ Obsidian:
     - Templater
     - Zotero Integration
     - Enhancing Export (no me ha funcionado últimamente)
-Community Plugins recomendados:
+3. Community Plugins recomendados:
     - Auto Link Title
     - Better Word Count
     - Callout Manager
@@ -25,7 +25,7 @@ Community Plugins recomendados:
     - Link with alias
     - Plugin Update Tracker
     - QuickAdd
-3. Obsidian > Pandoc + Zotero > Word:
+4. Obsidian > Pandoc + Zotero > Word:
     - https://forum.obsidian.md/u/Feralflora/summary
     - https://medium.com/@alexandraphelan/an-academic-workflow-zotero-obsidian-56bf918d51ab
     - https://publish.obsidian.md/hub/04+-+Guides%2C+Workflows%2C+%26+Courses/for+Academic+Writing
