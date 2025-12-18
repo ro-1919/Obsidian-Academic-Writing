@@ -1,0 +1,174 @@
+---
+citekey: '{{citekey}}'
+title: '{{title}}'
+Autor: {{authors}}
+{%- set camelRegex = r/([a-z])([A-Z])/g %}
+{%- for type, creators in creators | groupby("creatorType") %} 
+{% if creators.length > 1 %}{{type | replace(camelRegex, "$1 $2") | lower | trim}}s:{%- for creator in creators %}{% if creator.name %}
+ - {{creator.name}}{% else%}
+ - {{creator.firstName}} {{creator.lastName}} {% endif %}{%- endfor %} {% else -%}
+{{type | replace(camelRegex, "$1-$2") | lower | trim}}:{%- for creator in creators %}{% if creator.name %} "{{creator.name}}"{% else%} "{{creator.firstName}} {{creator.lastName}}"{% endif -%}{%- endfor -%}{% endif -%}{% endfor %}
+año: {% if date %}{{date | format("YYYY")}}{% endif %}{% if itemType == "bookSection" %}
+book-title: "{{bookTitle | replace('"',"'")}}"{% endif %}
+aliases: 
+ - '{%- if shortTitle %} {{shortTitle | safe}} {%- else %} {{title | safe}} {%- endif -%}'
+ - " {%- if creators -%}
+        {{creators[0].lastName}}
+        {%- if creators|length > 1 %} et al.{% endif -%}
+    {%- endif -%}
+    {%- if date %} ({{date | format("YYYY")}}){% endif -%} 
+    {%- if shortTitle %} {{shortTitle | safe}} {%- else %} {{title | safe}} {%- endif -%}"{% if DOI %}
+doi: https://doi.org/{{DOI}}{% endif %}{% if itemType == "book" %}
+ISBN: {{ISBN}}{% endif %}
+estado: {% for t in tags %}{{t.tag}}{% if not loop.last %}{% endif %}{% endfor %}
+resumen: '{% persist "r" %}  {% if isFirstImport %}{% endif %}{% endpersist %}'
+item-type: {{itemType | replace(camelRegex, "$1 $2") | title | trim}}
+created: 
+updated: 
+---
+>[!info]+ [**{%- if shortTitle %} {{shortTitle | safe}} {%- else %} {{title | safe}} {%- endif -%}**]({{desktopURI}})
+>**Autores**: {% for a in creators %} [[07-Autores/{{a.lastName}}, {{a.firstName}}|{{a.firstName}} {{a.lastName}}]]{% if not loop.last %}, {% endif %}{% endfor %}
+>**Año**: {{date | format ("YYYY")}}
+>**Estado**:  {% for t in tags %}{{t.tag}}{% if not loop.last %}, {% endif %}{% endfor %}
+>**Citekey**: `{{citekey}}`
+>{% if bibliography %}**Bibliography**: {{bibliography|replace("\n"," ")}}{% endif %}
+>[**Zotero**]({{desktopURI}}){% if DOI %} | [**DOI**](https://doi.org/{{DOI}}){% endif %}{% for attachment in attachments | filterby("path", "endswith", ".pdf") %} | [**PDF-{{loop.index}}**](file:///{{attachment.path | replace(" ", "%20")}}){%- endfor %}
+> {% if abstractNote %} **Abstract**:
+> {{abstractNote|replace("\n","\n>")|striptags(true)|replace("Objectives", "**Objectives**")|replace("Background", "**Background**")|replace("Methodology", "**Methodology**")|replace("Results","**Results**")|replace("Conclusion","**Conclusion**")}}
+> {% endif %}
+
+`BUTTON[update-litnote]`
+`INPUT[text(showcase):resumen]`
+{% persist "notes" %}
+{% if isFirstImport %}
+# Análisis
+
+## Resumen de lectura
+
+
+
+@{{citekey}}
+
+## Conceptos, autores y enlaces
+
+- **Conceptos**: 
+	- 
+- **Relaciones**: 
+	- 
+
+## Análisis corto
+%%Qué dice%%
+
+
+
+%%Cómo lo dice%%
+
+
+
+%%Por qué lo dice cómo lo dice%%
+
+
+
+# Notas de lectura
+
+
+
+{% endif %}{% endpersist %}
+
+# Relaciones
+![[lecturas.base#Local]]
+# Citas
+
+{% persist "annotations" %} 
+{%-
+    set zoteroColors = {
+		"#ff6666": "red", 
+		"#f19837": "orange", 
+		"#879a3975": "green", 
+		"#d0a21580": "yellow", 
+		"#3aa99f7a": "blue", 
+		"#a28ae5": "purple", 
+		"#e56eee": "magenta", 
+		"#aaaaaa": "grey"
+    }
+-%}
+
+{%-
+   set colorHeading = {
+		"red": "⭕ Very important or questionable",
+		"blue": "⭐ Important or interesting",
+		"green": "✅ Major statements",
+		"yellow": "📚 Ordinary notes",
+        "orange": "🔗 Interesting references",
+        "purple": "🧩 Methodology",
+        "other": "Misc"
+   }
+-%}
+
+{%- macro calloutHeader(type) -%}
+    {%- switch type -%}
+        {%- case "highlight" -%}
+        Highlight
+        {%- case "image" -%}
+        Image
+        {%- default -%}
+        Note
+    {%- endswitch -%}
+{%- endmacro %}
+
+{%- set newAnnot = [] -%}
+{%- set newAnnotations = [] -%}
+{%- set annotations = annotations | filterby("date", "dateafter", lastImportDate) %}
+
+{% if annotations.length > 0 %}
+*Imported: {{importDate | format("YYYY-MM-DD HH:mm")}}*
+
+{%- for annot in annotations -%}
+
+    {%- if annot.color in zoteroColors -%}
+        {%- set customColor = zoteroColors[annot.color] -%}
+    {%- elif annot.colorCategory|lower in colorHeading -%}
+    	{%- set customColor = annot.colorCategory|lower -%}
+    {%- else -%}
+	    {%- set customColor = "other" -%}
+    {%- endif -%}
+
+    {%- set newAnnotations = (newAnnotations.push({"annotation": annot, "customColor": customColor}), newAnnotations) -%}
+
+{%- endfor -%}
+
+{#- INSERT ANNOTATIONS -#}
+{#- Loops through each of the available colors and only inserts matching annotations -#}
+{#- This is a workaround for inserting categories in a predefined order (instead of using groupby & the order in which they appear in the PDF) -#}
+
+{%- for color, heading in colorHeading -%}
+{%- for entry in newAnnotations | filterby ("customColor", "startswith", color) -%}
+{%- set annot = entry.annotation -%}
+
+{%- if entry and loop.first %}
+
+### {{colorHeading[color]}}
+{%- endif %}
+
+> [!quote{{"|" + color if color != "other"}}]+ {{calloutHeader(annot.type)}} ([page. {{annot.pageLabel}}](zotero://open-pdf/library/items/{{annot.attachment.itemKey}}?page={{annot.pageLabel}}&annotation={{annot.id}}))
+
+{%- if annot.annotatedText %}
+> {{annot.annotatedText|nl2br}} {% if annot.hashTags %}{{annot.hashTags}}{% endif -%}
+{%- endif %}
+
+{%- if annot.imageRelativePath %}
+> ![[{{annot.imageRelativePath}}]]
+{%- endif %}
+
+{%- if annot.ocrText %}
+> {{annot.ocrText}}
+{%- endif %}
+
+{%- if annot.comment %}
+> - **{{annot.comment|nl2br}}**
+{%- endif -%}
+
+{%- endfor -%}
+{%- endfor -%}
+{% endif %}
+{% endpersist -%}
