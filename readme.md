@@ -1,4 +1,4 @@
-Esta información la he recopilado durante mi doctorado para poder escribir mi disertación, junto con otros tipos de escritura académica, dentro de Obsidian. Los comparto en caso de que pueda ayudarle a alguien más, igual recomiendo ver el resto de archivos como templates y filtos.lua:
+Esta información la he recopilado durante mi doctorado para poder escribir mi disertación dentro de Obsidian. Los comparto en caso de que pueda ayudarle a alguien más, igual recomiendo ver el resto de archivos como templates y filtos.lua:
 
 Zotero
 1. Descargar [Zotero](https://www.zotero.org/)
