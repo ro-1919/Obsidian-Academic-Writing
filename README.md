@@ -35,20 +35,20 @@ I have compiled this information during my PhD in order to write my dissertation
     - Homepage
     - Link with alias
     - Plugin Update Tracker
-4. Obsidian > Pandoc + Zotero > Word:
-    - https://forum.obsidian.md/u/Feralflora/summary
-    - https://medium.com/@alexandraphelan/an-academic-workflow-zotero-obsidian-56bf918d51ab
-    - https://publish.obsidian.md/hub/04+-+Guides%2C+Workflows%2C+%26+Courses/for+Academic+Writing
+4. Workflow to link Zotero + Obsidian:
+    - [Zotero Importer, template and button to update note](https://github.com/FeralFlora?tab=repositories)
+    - [Academic Writing Obsidian Workflow](https://medium.com/@alexandraphelan/an-academic-workflow-zotero-obsidian-56bf918d51ab)
+    - [More info Academic Writing Workflow](https://publish.obsidian.md/hub/04+-+Guides%2C+Workflows%2C+%26+Courses/for+Academic+Writing)
 
-## Pandoc (recomiendo ponerlo todo en una carpeta fácilmente accesible):
+## Pandoc:
 1. Install [Pandoc](https://pandoc.org/installing.html)
 2. Download [archivo de referencia](https://pandoc-templates.org/) (esto depende de qué estilo de citas utilizas más seguido)
 3. Download Filter [zotero.lua](https://retorque.re/zotero-better-bibtex/exporting/zotero.lua)
 
 If the Enhancing Export plugin is working:
 
-1. Create a new export type set to Word (the name does not matter)
-2. Add the following to Extra Arguments:
+1. Add new export template for Word
+2. Add the following Extra Arguments:
 
 --lua-filter="PATH\TO\Pandoc\filters\zotero.lua"
 --reference-doc="PATH\TO\REFERENCE\MLA.docx"
@@ -59,7 +59,7 @@ Exporting from Terminal (Example)
 Example command to export an Obsidian Markdown file to Word using Pandoc:
 
 pandoc -f markdown -t docx "PATH\TO\OBSIDIAN\FILE.md" \
--o "PATH\TO\REFERENCE\WORD\FILE.docx" \
+-o "PATH\TO\OUTPUT\LOCATION\WORD\FILE.docx" \
 --lua-filter="PATH\TO\Pandoc\filters\zotero.lua" \
 --reference-doc="PATH\TO\REFERENCE\MLA.docx" \
 --metadata=zotero_author-in-text:true
@@ -107,9 +107,9 @@ Obsidian:
     - Link with alias
     - Plugin Update Tracker
 4. Obsidian > Pandoc + Zotero > Word:
-    - https://forum.obsidian.md/u/Feralflora/summary
-    - https://medium.com/@alexandraphelan/an-academic-workflow-zotero-obsidian-56bf918d51ab
-    - https://publish.obsidian.md/hub/04+-+Guides%2C+Workflows%2C+%26+Courses/for+Academic+Writing
+    - [Zotero Importer, template and button to update note](https://github.com/FeralFlora?tab=repositories)
+    - [Academic Writing Obsidian Workflow](https://medium.com/@alexandraphelan/an-academic-workflow-zotero-obsidian-56bf918d51ab)
+    - [More info Academic Writing Workflow](https://publish.obsidian.md/hub/04+-+Guides%2C+Workflows%2C+%26+Courses/for+Academic+Writing)
 
 Pandoc (recomiendo ponerlo todo en una carpeta fácilmente accesible):
 1. Instalar [Pandoc](https://pandoc.org/installing.html)
@@ -117,13 +117,22 @@ Pandoc (recomiendo ponerlo todo en una carpeta fácilmente accesible):
 3. Descargar filto [.lua](https://retorque.re/zotero-better-bibtex/exporting/zotero.lua), este debe estar en una carpeta llamada "filters" dentro de la carpeta de Pandoc. Pueden agregarse otros filtros.
 
 
-Si el plugin Enhancing Export está funcionado (las últimas veces conjelaba elementos de Obsidian), es necesario:
-1. Crear un nuevo tipo de exportación de tipo Word, el nombre no tiene importancia
-2. Extra Arguments: --lua-filter="UBICACIÓN DE CARPETA\Pandoc\filters\zotero.lua" --reference-doc="UBICACIÓN DE ARCHIVO REFERENCIA\MLA.docx" --metadata=zotero_author-in-text:true
+Si Enhancing Export está funcionado:
 
-Ejemplo de exportar un archivo de obsidian a word en terminal:
+1. Agregar template para exportar tipo Word
+2. Poner los siguientes Extra Arguments:
 
-pandoc -f markdown -t docx "UBICACIÓN DEL ARCHIVO DE OBSIDIAN\ARCHIVO.md" -o "UBICACIÓN FINAL DE ARCHIVO WORD\ARCHIVO.docx" --lua-filter="UBICACIÓN DE CARPETA\Pandoc\filters\zotero.lua" --reference-doc="UBICACIÓN DE ARCHIVO REFERENCIA\MLA.docx" --metadata=zotero_author-in-text:true
+--lua-filter="PATH\TO\Pandoc\filters\zotero.lua"
+--reference-doc="PATH\TO\REFERENCE\MLA.docx"
+--metadata=zotero_author-in-text:true
+
+Ejemplo para exportar un archivo de 'md' (obsidian) a word en terminal:
+
+pandoc -f markdown -t docx "PATH\TO\OBSIDIAN\FILE.md" \
+-o "PATH\TO\OUTPUT\LOCATION\WORD\FILE.docx" \
+--lua-filter="PATH\TO\Pandoc\filters\zotero.lua" \
+--reference-doc="PATH\TO\REFERENCE\MLA.docx" \
+--metadata=zotero_author-in-text:true
 
 -f = from
 
