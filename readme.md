@@ -1,5 +1,4 @@
-Estos son pasos generales e información que he recopilado durante mi doctorado para poder escribir mi disertación en Obsidian. La primera pregunta que uno tendría es, ¿qué ventaja tendría a Word o otro procesador de texto? Después de usar Word por casi todos los años, encontré en Obsidian un lugar donde puedo recolectar notas de lecturas y teoría, relacionar ambas y, al mismo tiempo, tener un espacio sin fricción para escribir. Por ejemplo, puedo escribir un capítulo en pequeñas secciones, facilitando la edición de texto y su organización. Al mismo tiempo, citar (gracias a los plugins mencionados debajo) es tan fácil como poner un "@" y las primeras letras del apellido del autor en que estoy pensando. En fin, esto me ha ayudado y espero que pueda ayudar a alguien más:
-
+Esta información la he recopilado durante mi doctorado para poder escribir mi disertación, junto con otros tipos de escritura académica, dentro de Obsidian. Los comparto en caso de que pueda ayudarle a alguien más, igual recomiendo ver el resto de archivos como templates y filtos.lua:
 
 Zotero
 1. Descargar [Zotero](https://www.zotero.org/)
