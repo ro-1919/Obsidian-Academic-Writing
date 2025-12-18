@@ -1,6 +1,8 @@
 # Obsidian-Academic-Writing
 
-Esta información la he recopilado durante mi doctorado para poder escribir mi disertación dentro de Obsidian. Los comparto en caso de que pueda ayudarle a alguien más, igual recomiendo ver el resto de archivos como templates y filtos.lua:
+Esta información la he recopilado durante mi doctorado para poder escribir mi disertación dentro de Obsidian. La comparto en caso de que pueda ayudar a alguien más; igualmente, recomiendo revisar el resto de los archivos, como templates y filtros.lua.
+
+En pocas palabras, el workflow funciona de la siguiente manera: la escritura se realiza en Obsidian, que también utilizo para notas de lectura, teoría, eventos, etc. (de este modo, todo puede conectarse). En Zotero guardo los archivos (PDFs) y las citas. La conexión entre Zotero Integration y Better BibTeX Citation Keys permite citar fácilmente. Al terminar un archivo, simplemente lo convierto a Word a través de Pandoc, usualmente usando Enhancing Export. Esto da como resultado un archivo que solo necesita un Zotero refresh (con el conector de Zotero para Word) para decidir qué estilo de citación se va a usar. Zotero también generará la bibliografía. Así, los archivos de Word realmente son para compartir a un supervisor o alguna revista académica, mientras que el texto original se mantiene en su formato "md".
 
 Zotero
 1. Descargar [Zotero](https://www.zotero.org/)
