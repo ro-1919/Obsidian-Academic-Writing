@@ -59,7 +59,7 @@ Exporting from Terminal (Example)
 Example command to export an Obsidian Markdown file to Word using Pandoc:
 
 pandoc -f markdown -t docx "PATH\TO\OBSIDIAN\FILE.md" \
--o "PATH\TO\OUTPUT\LOCATION\WORD\FILE.docx" \
+-o "PATH\TO\OUTPUT\WORD\FILE.docx" \
 --lua-filter="PATH\TO\Pandoc\filters\zotero.lua" \
 --reference-doc="PATH\TO\REFERENCE\MLA.docx" \
 --metadata=zotero_author-in-text:true
@@ -129,7 +129,7 @@ Si Enhancing Export está funcionado:
 Ejemplo para exportar un archivo de 'md' (obsidian) a word en terminal:
 
 pandoc -f markdown -t docx "PATH\TO\OBSIDIAN\FILE.md" \
--o "PATH\TO\OUTPUT\LOCATION\WORD\FILE.docx" \
+-o "PATH\TO\OUTPUT\WORD\FILE.docx" \
 --lua-filter="PATH\TO\Pandoc\filters\zotero.lua" \
 --reference-doc="PATH\TO\REFERENCE\MLA.docx" \
 --metadata=zotero_author-in-text:true
