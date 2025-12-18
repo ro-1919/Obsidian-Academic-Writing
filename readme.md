@@ -15,7 +15,7 @@ Obsidian:
     - Templater
     - Zotero Integration
     - Enhancing Export (no me ha funcionado últimamente)
-   Community Plugins recomendados:
+Community Plugins recomendados:
     - Auto Link Title
     - Better Word Count
     - Callout Manager
