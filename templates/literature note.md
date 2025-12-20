@@ -26,7 +26,7 @@ item-type: {{itemType | replace(camelRegex, "$1 $2") | title | trim}}
 created: 
 updated: 
 ---
->[!info]+ [**{%- if shortTitle %} {{shortTitle | safe}} {%- else %} {{title | safe}} {%- endif -%}**]({{desktopURI}})
+>[!info]+ **[{%- if shortTitle %} {{shortTitle | safe}} {%- else %} {{title | safe}} {%- endif -%}]({{desktopURI}})**
 >**Autores**: {% for a in creators %} [[07-Autores/{{a.lastName}}, {{a.firstName}}|{{a.firstName}} {{a.lastName}}]]{% if not loop.last %}, {% endif %}{% endfor %}
 >**Año**: {{date | format ("YYYY")}}
 >**Estado**:  {% for t in tags %}{{t.tag}}{% if not loop.last %}, {% endif %}{% endfor %}
