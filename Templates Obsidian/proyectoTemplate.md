@@ -8,7 +8,7 @@
   tR += "---"
 %>
 title: <%* tR += title %>
-author: Rodrigo Lichtle Ventosa
+author: 
 aliases:
 evento: []
 year: 
@@ -44,5 +44,5 @@ updated:
 # Textos
 ![[proyectos.base#Local]]
 
-**Archivo**
+**Archivo** %% fold %%
 ![[proyectos (Archivo).base#Local]]

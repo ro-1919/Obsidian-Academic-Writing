@@ -56,11 +56,7 @@ updated:
 - **Relaciones**: 
 	- 
 
-%% 04-Conceptos/ %% 
-%% 05-Periodos/Hechos/ %%
-%% 05-Periodos/Personajes/ %%
-%% 07-Autores/ %%
-## Análisis corto
+## Análisis corto %% fold %%
 %%Qué dice%%
 
 
@@ -73,7 +69,7 @@ updated:
 
 
 
-# Notas de lectura
+# Notas de lectura %% fold %%
 
 
 
@@ -83,29 +79,74 @@ updated:
 ![[lecturas.base#Local]]
 # Citas
 
-{% set colorValueMap = { "#ff6666": { "colorCategory": "Red", "heading": "⭕ Very important", "symbol": "!" }, "#2ea8e5": { "colorCategory": "Blue", "heading": "⭐ Important", "symbol": "@" }, "#5fb236": { "colorCategory": "Green", "heading": "🎯 Major statement", "symbol": "$" }, "#ffd400": { "colorCategory": "Yellow", "heading": "📚 Ordinary notes", "symbol": "&" } } -%}
+{% set colorValueMap = {
+    "#ff6666": {
+        "colorCategory": "Red",
+        "heading": "⭕ Very important",
+        "symbol": "!"
+    },
+    "#2ea8e5": {
+        "colorCategory": "Blue",
+        "heading": "⭐ Important",
+        "symbol": "@"
+    },
+    "#5fb236": {
+        "colorCategory": "Green",
+        "heading": "🎯 Major statement",
+        "symbol": "$"
+    },
+    "#ffd400": {
+        "colorCategory": "Yellow",
+        "heading": "📚 Ordinary notes",
+        "symbol": "&"
+    },
+} -%}
 
-{%- macro tagFormatter(annotation) -%} {% if annotation.tags -%} {%- for t in annotation.tags %} #{{ t.tag | replace(r/\s+/g, "-") }}{% if not loop.last %}, {% endif %}{%- endfor %} {%- endif %} {%- endmacro -%}
+{%- macro tagFormatter(annotation) -%}
+    {% if annotation.tags -%}
+        {%- for t in annotation.tags %} #{{ t.tag | replace(r/\s+/g, "-") }}{% if not loop.last %}, {% endif %}{%- endfor %}
+    {%- endif %}
+{%- endmacro -%}
 
-{% persist "annotations" %} {% set annotations = annotations | filterby("date", "dateafter", lastImportDate) -%} {% if annotations.length > 0 %} _Imported on [[{{importDate | format("YYYY-MM-DD")}}]] at {{importDate | format("HH:mm")}}_
+{% persist "annotations" %}
+{% set annotations = annotations | filterby("date", "dateafter", lastImportDate) -%}
+{% if annotations.length > 0 %}
+*Imported on [[{{importDate | format("YYYY-MM-DD")}}]] at {{importDate | format("HH:mm")}}*
 
-{%- set grouped_annotations = annotations | groupby("color") -%} {%- for color, colorValue in colorValueMap -%} {%- if color in grouped_annotations -%} {%- set annotations = grouped_annotations[color] -%} {%- for annotation in annotations -%} {% if annotation.pageLabel %} {%- set citationLink = '[(p. ' ~ annotation.pageLabel ~ ')](' ~ annotation.desktopURI ~ ')' %} {%- else %} {%- set citationLink = '[Open in Zotero](zotero://open-pdf/library/items/' ~ annotation.attachment.itemKey ~ '?page&annotation=' ~ annotation.id ~ ')' %} {% endif %} {%- set tagString = tagFormatter(annotation) %}
+{%- set grouped_annotations = annotations | groupby("color") -%}
+{%- for color, colorValue in colorValueMap -%}
+{%- if color in grouped_annotations -%} 
+{%- set annotations = grouped_annotations[color] -%}
+{%- for annotation in annotations -%}
+{% if annotation.pageLabel %}
+{%- set citationLink = '[(p. ' ~ annotation.pageLabel ~ ')](' ~ annotation.desktopURI ~ ')' %}
+{%- else %}
+{%- set citationLink = '[Open in Zotero](zotero://open-pdf/library/items/' ~ annotation.attachment.itemKey ~ '?page&annotation=' ~ annotation.id ~ ')' %}
+{% endif %}
+{%- set tagString = tagFormatter(annotation) %}
 
 {%- if annotation and loop.first %}
-### {{colorValue.heading}} %% fold %%
 
+### {{colorValue.heading}} %% fold %%
 {% endif -%}
 
 {%- if annotation.imageRelativePath %}
 
-> [!cite]+ Image {{citationLink}} ![[{{annotation.imageRelativePath}}]]{% if annotation.tags %} {{tagString}}{% endif %}{%- if (annotation.comment or []).indexOf("todo ") !== -1 %}
-> 
-> - [ ]  **{{annotation.comment | replace("todo ", "")}}**{%- elif annotation.comment %} **{{annotation.comment}}**{%- endif %} {% elif (annotation.comment or []).indexOf("todo ") !== -1 %}
-
-- [ ]  **{{annotation.comment | replace("todo ", "")}}**:{% if not annotation.annotatedText %} {{citationLink}}{% else %}
-    - {{colorValue.symbol}} {{annotation.annotatedText | replace(r/\s+/g, " ")}} {{citationLink}}{{tagString}}{% endif -%} {% elif annotation.comment %}
+> [!cite]+ Image {{citationLink}}
+> ![[{{annotation.imageRelativePath}}]]{% if annotation.tags %}
+> {{tagString}}{% endif %}{%- if (annotation.comment or []).indexOf("todo ") !== -1 %}
+> - [ ] **{{annotation.comment | replace("todo ", "")}}**{%- elif annotation.comment %}
+> **{{annotation.comment}}**{%- endif %}
+{% elif (annotation.comment or []).indexOf("todo ") !== -1 %}
+- [ ] **{{annotation.comment | replace("todo ", "")}}**:{% if not annotation.annotatedText %} {{citationLink}}{% else %}
+	- {{colorValue.symbol}}  {{annotation.annotatedText | replace(r/\s+/g, " ")}} {{citationLink}}{{tagString}}{% endif -%}
+{% elif annotation.comment %}
 - **{{annotation.comment}}**:{% if not annotation.annotatedText %} {{citationLink}}{% else %}
-    - {{colorValue.symbol}} {{annotation.annotatedText | replace(r/\s+/g, " ") }} {{citationLink}}{{tagString}}{% endif -%} {%- elif annotation.annotatedText %}
-- {{colorValue.symbol}} {{annotation.annotatedText | replace(r/\s+/g, " ") }} {{citationLink}}{{tagString}} {%- endif -%}{%- endfor %}{%- endif -%} {% endfor -%} {% endif %}
+	- {{colorValue.symbol}}  {{annotation.annotatedText | replace(r/\s+/g, " ") }} {{citationLink}}{{tagString}}{% endif -%}
+{%- elif annotation.annotatedText %}
+- {{colorValue.symbol}}  {{annotation.annotatedText | replace(r/\s+/g, " ") }} {{citationLink}}{{tagString}}
+{%- endif -%}{%- endfor %}{%- endif -%}
+{% endfor -%}
+{% endif %}
 
 {% endpersist %}
