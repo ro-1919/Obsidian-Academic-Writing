@@ -73,7 +73,7 @@ El workflow en pocas palabras:
 
 ## English:
 
-I have compiled this information during my PhD in order to write my dissertation in Obsidian. I am sharing it in case it may be useful to others; I also recommend checking the rest of the files, such as templates and filters.lua.
+I have compiled this information during my PhD in order to write my dissertation in Obsidian. I am sharing it in case it may be useful to others:
 
 ### Workflow (In Short)
 
