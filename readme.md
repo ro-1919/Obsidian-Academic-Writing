@@ -46,6 +46,7 @@ El workflow en pocas palabras:
     - Link with alias
     - Plugin Update Tracker
 4. Más recursos: Obsidian > Pandoc + Zotero > Word:
+    - [Obsidian for Academics](https://github.com/FeralFlora/obsidian-hub/blob/main/04%20-%20Guides%2C%20Workflows%2C%20%26%20Courses/for%20Academic%20Writing.md)
     - [Academic Writing Obsidian Workflow](https://medium.com/@alexandraphelan/an-academic-workflow-zotero-obsidian-56bf918d51ab)
     - [More info Academic Writing Workflow](https://publish.obsidian.md/hub/04+-+Guides%2C+Workflows%2C+%26+Courses/for+Academic+Writing)
 
