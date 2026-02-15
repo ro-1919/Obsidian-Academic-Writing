@@ -21,14 +21,13 @@ El workflow en pocas palabras:
     - En MacOS recomiendo instalarlo a través [brew](https://brew.sh/). Después de instalar brew sólo es necesario, como dicen las intrucciones de Pandoc, escribir en la terminal `brew install pandoc`
     - En Windows no estoy seguro la mejor forma, supondría que winget, la paquetería oficial de Windows `winget install --source winget --exact --id JohnMacFarlane.Pandoc`
     - En linux dependería de la distribución
-2. Descargar [archivo de referencia](https://pandoc-templates.org/) (esto depende de qué estilo de citas utilizas más seguido. Lo que Pandoc necesita son los estilos de párrafo, entonces son modificables. Digamos, es posible cambiarle la tipografía, tamaño, alineación; mientras se guarde en el estilo predeterminado (block text, paragraph, etc.; para saber puedes exportar un archivo y ver cuales son los que quieres modificar, tal vez el archivo de referencia no necesita modificaciones). Aquí puedes encontrar el que yo uso, [MLA, Times New Roman](./Reference file/MLA.docx).
+2. Descargar [archivo de referencia](https://pandoc-templates.org/) (esto depende de qué estilo de citas utilizas más seguido. Lo que Pandoc necesita son los estilos de párrafo, entonces son modificables. Digamos, es posible cambiarle la tipografía, tamaño, alineación; mientras se guarde en el estilo predeterminado (block text, paragraph, etc.; para saber puedes exportar un archivo y ver cuales son los que quieres modificar, tal vez el archivo de referencia no necesita modificaciones). Aquí puedes encontrar el que yo uso, [MLA, Times New Roman](./reference_file/MLA.docx).
 3. Descargar filto [.lua](https://retorque.re/zotero-better-bibtex/exporting/zotero.lua). Generalmente se agregan en la carpeta filters de /Pandoc/filters/; pero como menciono debajo, si usas Obsidian sync puedes ponerlo dentro de Obsidian para que se sincronice con tu bóveda y sea más fácil referenciarlo.
 
 ### Obsidian:
 1. Descargar [Obsidian](https://obsidian.md/)
 2. Lista de Community Plugins necesarios (Options > Community plugins > Turn on):
-    - **Zotero Integration** (Permite importar notas, subrayados e información de citas de Zotero a Obsidian. Para configurarlo: [Zotero Importer, template and button to update note](hhttps://gist.github.com/FeralFlora/78f494c1862ce4457cef28d9d9ba5a01))
-      - Aquí es importante recordar que los templates pueden y deben modificarse de acuerdo a lo que uses y necesites.
+    - **Zotero Integration** (Permite importar notas, subrayados e información de citas de Zotero a Obsidian. Para configurarlo: [Zotero Importer, template and button to update note](hhttps://gist.github.com/FeralFlora/78f494c1862ce4457cef28d9d9ba5a01))[¹]
     - **Enhancing Export** (Permite exporar con Pandoc desde Obsidian, abajo la información de cómo configurarlo)
     - **Pandoc Reference List** (Se conecta con Zotero para recomendar Citation Keys al comenzar a escribirlas Tambien renderiza la cita para que aparezca en formato "Autor, # pag.")
     - Longform (Hace que obsidian funcione como Scrivener, permitiendo crear un proyecto que contenga múltiples notas que después puede compilarse en un solo documento)
@@ -68,6 +67,8 @@ El workflow en pocas palabras:
 -t = to
 
 -o = output
+
+[¹]: Aquí es importante recordar que los templates pueden y deben modificarse de acuerdo a lo que uses y necesites.
 
 ---
 
