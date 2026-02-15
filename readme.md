@@ -11,36 +11,35 @@ El workflow en pocas palabras:
 
 ### Zotero
 1. Descargar [Zotero](https://www.zotero.org/)
-2. Instalar [Better BibTeX](https://retorque.re/zotero-better-bibtex/installation/) -> Zotero > Tools > Plugin > Instill from file
+2. Descargar e instalar [Better BibTeX](https://retorque.re/zotero-better-bibtex/installation/) > Zotero > Tools > Plugin > Instill from file
 3. Opcional: descargar [Conector](https://www.zotero.org/download/connectors) de Zotero para buscadores
 4. En Configuraciones de Zotero
-    - Better BibTeX > Citation key Formula: decide cómo quieres que sean tus [citations key](https://retorque.re/zotero-better-bibtex/citing/index.html). Por ejemplo, esta es mi fórmula: `authEtAl + "_" + shorttitle(2, 2) + "_" + year` -> Foucault_VigilarCastigar_2003 o Apellido_TítuloTítulo_Año. Si hay más de un autor sólo incluye un apellido y agrega EtAl. Sobre el título, sólo incluye las dos primeras palabras.
+    - Better BibTeX > Citation key Formula: decide cómo quieres que sean tus [citations key](https://retorque.re/zotero-better-bibtex/citing/index.html). Por ejemplo, esta es mi fórmula: `authEtAl + "_" + shorttitle(2, 2) + "_" + year` -> `Foucault_VigilarCastigar_2003` o `Apellido_TítuloTítulo_Año`. Si hay más de un autor sólo incluye un apellido y agrega EtAl. Sobre el título, sólo incluye las dos primeras palabras.
 
 ### Pandoc:
-1. Instalar [Pandoc](https://pandoc.org/installing.html). Si se instalan de las siguientes maneras, Pandoc se instalará en donde el sistema espera que se instale. En pocas palabras, no va a ser necesario agregar su ubicación en Obsidian porque va a estar donde *generalmente* está:
+1. Instalar [Pandoc](https://pandoc.org/installing.html). Recomiendo que se instale a través de un administrador de paquetes. Si se hace así, Pandoc se instalará en donde el sistema espera. Dicho de otra forma, no va a ser necesario agregar su ubicación en Obsidian porque va a estar donde *generalmente* está:
     - En MacOS recomiendo instalarlo a través [brew](https://brew.sh/). Después de instalar brew sólo es necesario, como dicen las intrucciones de Pandoc, escribir en la terminal `brew install pandoc`
     - En Windows no estoy seguro la mejor forma, supondría que winget, la paquetería oficial de Windows `winget install --source winget --exact --id JohnMacFarlane.Pandoc`
     - En linux dependería de la distribución
-2. Descargar [archivo de referencia](https://pandoc-templates.org/) (esto depende de qué estilo de citas utilizas más seguido. Lo que Pandoc utiliza son los estilos de párrafo, entonces puedes modificarlos. Digamos, cambiarle la tipografía, y saldrá como lo has modificado. Agrego el que yo uso MLA, Times New Roman)
-3. Descargar filto [.lua](https://retorque.re/zotero-better-bibtex/exporting/zotero.lua) Generalmente se agregan en la carpeta filters de /Pandoc/filters/; pero como menciono debajo, si usas obsidian sync puedes ponerlo dentro de Obsidian para que se sincronice con tu bóveda y sea más fácil referenciarlo.
+2. Descargar [archivo de referencia](https://pandoc-templates.org/) (esto depende de qué estilo de citas utilizas más seguido. Lo que Pandoc necesita son los estilos de párrafo, entonces son modificables. Digamos, es posible cambiarle la tipografía, tamaño, alineación; mientras se guarde en el estilo predeterminado (block text, paragraph, etc.; para saber puedes exportar un archivo y ver cuales son los que quieres modificar, tal vez el archivo de referencia no necesita modificaciones). Aquí puedes encontrar el que yo uso, [MLA, Times New Roman](./Reference file/MLA.docx).
+3. Descargar filto [.lua](https://retorque.re/zotero-better-bibtex/exporting/zotero.lua). Generalmente se agregan en la carpeta filters de /Pandoc/filters/; pero como menciono debajo, si usas Obsidian sync puedes ponerlo dentro de Obsidian para que se sincronice con tu bóveda y sea más fácil referenciarlo.
 
 ### Obsidian:
 1. Descargar [Obsidian](https://obsidian.md/)
 2. Lista de Community Plugins necesarios (Options > Community plugins > Turn on):
-    - **Zotero Integration** (Permite importar notas, subrayados e información de citas de Zotero a Obsidian. Para configurarlo: [Zotero Importer, template and button to update note](https://github.com/FeralFlora?tab=repositories))
+    - **Zotero Integration** (Permite importar notas, subrayados e información de citas de Zotero a Obsidian. Para configurarlo: [Zotero Importer, template and button to update note](hhttps://gist.github.com/FeralFlora/78f494c1862ce4457cef28d9d9ba5a01))
       - Aquí es importante recordar que los templates pueden y deben modificarse de acuerdo a lo que uses y necesites.
     - **Enhancing Export** (Permite exporar con Pandoc desde Obsidian, abajo la información de cómo configurarlo)
     - **Pandoc Reference List** (Se conecta con Zotero para recomendar Citation Keys al comenzar a escribirlas Tambien renderiza la cita para que aparezca en formato "Autor, # pag.")
     - Longform (Hace que obsidian funcione como Scrivener, permitiendo crear un proyecto que contenga múltiples notas que después puede compilarse en un solo documento)
     - Meta Bind (Permite crear botones y modificar la metadata desde el cuerpo de las notas)
     - Templater (Automatizar templates)
-    - List Callout (Necesario si sigues FeralFlora template)
+    - List Callout (Necesario si sigues el template de FeralFlora)
 3. Recomendados:
     - QuickAdd
     - Auto Link Title
     - Better Word Count
-    - Callout Manager
-    - Enhanced Annotations
+    - Enhanced Annotation
     - Iconize
     - Homepage
     - Link with alias
@@ -58,7 +57,7 @@ El workflow en pocas palabras:
 `--lua-filter="${vaultDir}/99-Archivo/Pandoc/zotero.lua" --reference-doc="${vaultDir}/99-Archivo/Pandoc/MLA.docx" --metadata=zotero_csl-style:mla --metadata=zotero_author-in-text:true`
 
 *${vaultDir} = significa la  ubicación de la bóveda de obsidian. Si usas Obsidan sync, por ejemplo, puedes aprovechar y crear un folder para "Pandoc" que contenga todo lo que se necesita para exportar: archivo de referencia y filtro lua. Si no usas obsidian sync y pusiste las cosas en otro lugar, **necesitas poner su ubicación**.
-**lua filter `zotero.lua`= este filtro básicamente hace que las referencias Pandoc al pasar al documento Word sean editables para el add-on de Zotero. La ventaja de usarlo así es que las citas seguirán siendo editables en Word y la bibliografía será dinámica.
+**lua filter `zotero.lua`= este filtro básicamente hace que las referencias Pandoc al pasar al documento Word sean editables para el add-on de Zotero. La ventaja de usarlo así es que las citas seguirán siendo configurables en Word y la bibliografía será dinámica.
 
 #### Exportar un archivo `.md` (obsidian) a `.docx` (word) en terminal:
 
