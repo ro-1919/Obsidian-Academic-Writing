@@ -18,6 +18,7 @@ aliases:
     {%- endif -%}
     {%- if date %} ({{date | format("YYYY")}}){% endif -%} 
     {%- if shortTitle %} {{shortTitle | safe}} {%- else %} {{title | safe}} {%- endif -%}"{% if DOI %}
+ - '{{citekey}}'
 doi: https://doi.org/{{DOI}}{% endif %}{% if itemType == "book" %}
 ISBN: {{ISBN}}{% endif %}
 estado: {% for t in tags %}{{t.tag}}{% if not loop.last %}{% endif %}{% endfor %}
@@ -38,7 +39,7 @@ updated:
 > {% endif %}
 
 `BUTTON[update-litnote]`
-`INPUT[text(showcase):resumen]`
+
 {% persist "notes" %}
 {% if isFirstImport %}
 # Análisis
@@ -56,27 +57,26 @@ updated:
 - **Relaciones**: 
 	- 
 
+%% 04-Conceptos/ %% %% 05-Periodos/Hechos/ %% %% 05-Periodos/Personajes/ %% %% 07-Autores/ %%
+
 ## Análisis corto %% fold %%
 %%Qué dice%%
 
-
-
 %%Cómo lo dice%%
-
-
 
 %%Por qué lo dice cómo lo dice%%
 
-
-
-# Notas de lectura %% fold %%
+## Notas de lectura %% fold %%
 
 
 
 {% endif %}{% endpersist %}
 
-# Relaciones
+## Relaciones %% fold %%
+
 ![[lecturas.base#Local]]
+
+---
 # Citas
 
 {% set colorValueMap = {
@@ -99,7 +99,7 @@ updated:
         "colorCategory": "Yellow",
         "heading": "📚 Ordinary notes",
         "symbol": "&"
-    },
+    }
 } -%}
 
 {%- macro tagFormatter(annotation) -%}
@@ -108,8 +108,6 @@ updated:
     {%- endif %}
 {%- endmacro -%}
 
-{% persist "annotations" %}
-{% set annotations = annotations | filterby("date", "dateafter", lastImportDate) -%}
 {% if annotations.length > 0 %}
 *Imported on [[{{importDate | format("YYYY-MM-DD")}}]] at {{importDate | format("HH:mm")}}*
 
@@ -148,5 +146,3 @@ updated:
 {%- endif -%}{%- endfor %}{%- endif -%}
 {% endfor -%}
 {% endif %}
-
-{% endpersist %}
