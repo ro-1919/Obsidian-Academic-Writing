@@ -35,6 +35,7 @@ El workflow en pocas palabras:
     - Templater (Automatizar templates)
     - List Callout (Necesario si sigues el template de FeralFlora)
 3. Recomendados:
+    - Creases
     - QuickAdd
     - Auto Link Title
     - Better Word Count
@@ -109,7 +110,7 @@ I have compiled this information during my PhD in order to write my dissertation
     - Plugin Update Tracker
 4. Workflow to link Zotero + Obsidian:
     - [Zotero Importer, template and button to update note](https://github.com/FeralFlora?tab=repositories)
-    - [Academic Writing Obsidian Workflow](https://medium.com/@alexandraphelan/an-academic-workflow-zotero-obsidian-56bf918d51ab)
+    - [Academic Writing Obsidian Workflow](https://medium.com/@alexandraphelan/an-updated-academic-workflow-zotero-obsidian-cffef080addd)
     - [More info Academic Writing Workflow](https://publish.obsidian.md/hub/04+-+Guides%2C+Workflows%2C+%26+Courses/for+Academic+Writing)
 
 ### Pandoc:
