@@ -1,14 +1,13 @@
 ---
 citekey: '{{citekey}}'
-title: '{{title}}'
-Autor: {{authors}}
+title: "{{title | replace('"',"'")}}"
 {%- set camelRegex = r/([a-z])([A-Z])/g %}
 {%- for type, creators in creators | groupby("creatorType") %} 
 {% if creators.length > 1 %}{{type | replace(camelRegex, "$1 $2") | lower | trim}}s:{%- for creator in creators %}{% if creator.name %}
- - {{creator.name}}{% else%}
- - {{creator.firstName}} {{creator.lastName}} {% endif %}{%- endfor %} {% else -%}
+- {{creator.name}}{% else%}
+- {{creator.firstName}} {{creator.lastName}} {% endif %}{%- endfor %} {% else -%}
 {{type | replace(camelRegex, "$1-$2") | lower | trim}}:{%- for creator in creators %}{% if creator.name %} "{{creator.name}}"{% else%} "{{creator.firstName}} {{creator.lastName}}"{% endif -%}{%- endfor -%}{% endif -%}{% endfor %}
-año: {% if date %}{{date | format("YYYY")}}{% endif %}{% if itemType == "bookSection" %}
+year: {% if date %}{{date | format("YYYY")}}{% endif %}{% if itemType == "bookSection" %}
 book-title: "{{bookTitle | replace('"',"'")}}"{% endif %}
 aliases: 
  - '{%- if shortTitle %} {{shortTitle | safe}} {%- else %} {{title | safe}} {%- endif -%}'
@@ -22,8 +21,11 @@ aliases:
 doi: https://doi.org/{{DOI}}{% endif %}{% if itemType == "book" %}
 ISBN: {{ISBN}}{% endif %}
 estado: {% for t in tags %}{{t.tag}}{% if not loop.last %}{% endif %}{% endfor %}
-resumen: '{% persist "r" %}  {% if isFirstImport %}{% endif %}{% endpersist %}'
+publisher: {% if publicationTitle %}"{{publicationTitle}}"{% else %}"{{publisher}}"{% endif %}{% if attachments.length > 0 %}{% for attachment in attachments %}{% if loop.first %}
+attachments:{% endif %}
+- {{attachment.path}}{% endfor %}{% endif %}
 item-type: {{itemType | replace(camelRegex, "$1 $2") | title | trim}}
+libraryID: {{libraryID}}
 created: 
 updated: 
 ---
@@ -78,7 +80,7 @@ updated:
 
 ---
 # Citas
-
+{# version: 3.6 -#}
 {% set colorValueMap = {
     "#ff6666": {
         "colorCategory": "Red",
@@ -101,16 +103,15 @@ updated:
         "symbol": "&"
     }
 } -%}
-
 {%- macro tagFormatter(annotation) -%}
     {% if annotation.tags -%}
         {%- for t in annotation.tags %} #{{ t.tag | replace(r/\s+/g, "-") }}{% if not loop.last %}, {% endif %}{%- endfor %}
     {%- endif %}
 {%- endmacro -%}
-
+{% persist "annotations" %}
+{% set annotations = annotations | filterby("date", "dateafter", lastImportDate) -%}
 {% if annotations.length > 0 %}
 *Imported on [[{{importDate | format("YYYY-MM-DD")}}]] at {{importDate | format("HH:mm")}}*
-
 {%- set grouped_annotations = annotations | groupby("color") -%}
 {%- for color, colorValue in colorValueMap -%}
 {%- if color in grouped_annotations -%} 
@@ -122,10 +123,8 @@ updated:
 {%- set citationLink = '[Open in Zotero](zotero://open-pdf/library/items/' ~ annotation.attachment.itemKey ~ '?page&annotation=' ~ annotation.id ~ ')' %}
 {% endif %}
 {%- set tagString = tagFormatter(annotation) %}
-
 {%- if annotation and loop.first %}
-
-### {{colorValue.heading}} %% fold %%
+## {{colorValue.heading}} %% fold %%
 {% endif -%}
 
 {%- if annotation.imageRelativePath %}
@@ -146,3 +145,5 @@ updated:
 {%- endif -%}{%- endfor %}{%- endif -%}
 {% endfor -%}
 {% endif %}
+
+{% endpersist %}

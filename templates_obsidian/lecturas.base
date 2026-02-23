@@ -1,0 +1,113 @@
+formulas:
+  filter title: if(this["filter title"],file.basename.lower().contains(this["filter title"].lower()), true)
+properties:
+  note.alias:
+    displayName: aliases
+  formula.filter title:
+    displayName: filter title
+views:
+  - type: table
+    name: Zotero
+    filters:
+      and:
+        - file.path.startsWith("01-Literatura/Zotero")
+    order:
+      - estado
+      - file.name
+      - Autor
+      - title
+      - updated
+    sort:
+      - property: updated
+        direction: DESC
+      - property: Autor
+        direction: DESC
+      - property: resumen
+        direction: ASC
+      - property: Titulo
+        direction: ASC
+    limit: 20
+    columnSize:
+      note.estado: 45
+      file.name: 20
+      note.Autor: 199
+      note.title: 378
+      note.updated: 143
+  - type: table
+    name: Kobo
+    filters:
+      and:
+        - file.path.startsWith("01-Literatura/Kobo")
+    order:
+      - file.name
+      - author
+    columnSize:
+      file.name: 267
+  - type: table
+    name: Físicos
+    filters:
+      and:
+        - file.path.startsWith("01-Literatura/Físicos")
+    order:
+      - authors
+      - title
+      - file.name
+    sort:
+      - property: authorLF
+        direction: ASC
+    columnSize:
+      note.title: 240
+      file.name: 267
+  - type: table
+    name: Conceptos
+    filters:
+      and:
+        - file.inFolder("04-Conceptos")
+    order:
+      - file.name
+      - resumen
+      - tags
+    sort:
+      - property: updated
+        direction: DESC
+    columnSize:
+      file.name: 181
+      note.resumen: 296
+  - type: cards
+    name: Autores
+    filters:
+      and:
+        - file.inFolder("07-Autores")
+    order:
+      - title
+      - years
+      - obras
+    columnSize:
+      file.name: 125
+    image: note.image
+    imageAspectRatio: 1
+    cardSize: 150
+  - type: table
+    name: Local
+    filters:
+      or:
+        - file.hasLink(this.file)
+    order:
+      - file.name
+      - title
+      - Autor
+      - año
+      - estado
+      - updated
+    sort:
+      - property: title
+        direction: ASC
+      - property: created
+        direction: DESC
+      - property: Autor
+        direction: ASC
+    columnSize:
+      file.name: -35
+      note.title: 203
+      note.Autor: 148
+      note.año: 67

@@ -54,10 +54,7 @@ El workflow en pocas palabras:
 1. Recordar que es necesario un Word de referencia en el estilo que vas a necesitar.
 2. Poner los siguientes Extra Arguments:
 
-`--lua-filter="${vaultDir}/99-Archivo/Pandoc/zotero.lua" --reference-doc="${vaultDir}/99-Archivo/Pandoc/MLA.docx" --metadata=zotero_csl-style:mla --metadata=zotero_author-in-text:true`
-
-*${vaultDir} = significa la  ubicación de la bóveda de obsidian. Si usas Obsidan sync, por ejemplo, puedes aprovechar y crear un folder para "Pandoc" que contenga todo lo que se necesita para exportar: archivo de referencia y filtro lua. Si no usas obsidian sync y pusiste las cosas en otro lugar, **necesitas poner su ubicación**.
-**lua filter `zotero.lua`= este filtro básicamente hace que las referencias Pandoc al pasar al documento Word sean editables para el add-on de Zotero. La ventaja de usarlo así es que las citas seguirán siendo configurables en Word y la bibliografía será dinámica.
+`--lua-filter="${vaultDir}/99-Archivo/Pandoc/zotero.lua" --reference-doc="${vaultDir}/99-Archivo/Pandoc/MLA.docx" --metadata=zotero_csl-style:mla --metadata=zotero_author-in-text:true` [²] [³]
 
 #### Exportar un archivo `.md` (obsidian) a `.docx` (word) en terminal:
 
@@ -70,6 +67,8 @@ El workflow en pocas palabras:
 -o = output
 
 [¹]: Aquí es importante recordar que los templates pueden y deben modificarse de acuerdo a lo que uses y necesites.
+[²]: ${vaultDir} = significa la  ubicación de la bóveda de obsidian. Si usas Obsidan sync, por ejemplo, puedes aprovechar y crear un folder para "Pandoc" que contenga todo lo que se necesita para exportar: archivo de referencia y filtro lua. Si no usas obsidian sync y pusiste las cosas en otro lugar, **necesitas poner su ubicación**.
+[³]: lua filter `zotero.lua`= este filtro básicamente hace que las referencias Pandoc al pasar al documento Word sean editables para el add-on de Zotero. La ventaja de usarlo así es que las citas seguirán siendo configurables en Word y la bibliografía será dinámica.
 
 ---
 
