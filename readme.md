@@ -28,7 +28,7 @@ El workflow en pocas palabras:
 ### Obsidian:
 1. Descargar [Obsidian](https://obsidian.md/)
 2. Lista de Community Plugins necesarios (Options > Community plugins > Turn on):
-    - **Zotero Integration** (Permite importar notas, subrayados e información de citas de Zotero a Obsidian. Para configurarlo: [Zotero Importer, template and button to update note](hhttps://gist.github.com/FeralFlora/78f494c1862ce4457cef28d9d9ba5a01))[¹]
+    - **Zotero Integration** (Permite importar notas, subrayados e información de citas de Zotero a Obsidian. Para configurarlo: [Zotero Importer, template and button to update note](hhttps://gist.github.com/FeralFlora/78f494c1862ce4457cef28d9d9ba5a01))[^1]
     - **Enhancing Export** (Permite exporar con Pandoc desde Obsidian, abajo la información de cómo configurarlo)
     - **Pandoc Reference List** (Se conecta con Zotero para recomendar Citation Keys al comenzar a escribirlas Tambien renderiza la cita para que aparezca en formato "Autor, # pag.")
     - Longform (Hace que obsidian funcione como Scrivener, permitiendo crear un proyecto que contenga múltiples notas que después puede compilarse en un solo documento. Revisar [scripts](./longform-scripts/) para complilación)
@@ -55,7 +55,7 @@ El workflow en pocas palabras:
 1. Recordar que es necesario un Word de referencia en el estilo que vas a necesitar.
 2. Poner los siguientes Extra Arguments:
 
-`--lua-filter="${vaultDir}/99-Archivo/Pandoc/zotero.lua" --reference-doc="${vaultDir}/99-Archivo/Pandoc/MLA.docx" --metadata=zotero_csl-style:mla --metadata=zotero_author-in-text:true` [²] [³]
+`--lua-filter="${vaultDir}/99-Archivo/Pandoc/zotero.lua" --reference-doc="${vaultDir}/99-Archivo/Pandoc/MLA.docx" --metadata=zotero_csl-style:mla --metadata=zotero_author-in-text:true` [^2] [^3]
 
 #### Exportar un archivo `.md` (obsidian) a `.docx` (word) en terminal:
 
@@ -67,9 +67,11 @@ El workflow en pocas palabras:
 
 -o = output
 
-[¹]: Aquí es importante recordar que los templates pueden y deben modificarse de acuerdo a lo que uses y necesites.
-[²]: ${vaultDir} = significa la  ubicación de la bóveda de obsidian. Si usas Obsidan sync, por ejemplo, puedes aprovechar y crear un folder para "Pandoc" que contenga todo lo que se necesita para exportar: archivo de referencia y filtro lua. Si no usas obsidian sync y pusiste las cosas en otro lugar, **necesitas poner su ubicación**.
-[³]: lua filter `zotero.lua`= este filtro básicamente hace que las referencias Pandoc al pasar al documento Word sean editables para el add-on de Zotero. La ventaja de usarlo así es que las citas seguirán siendo configurables en Word y la bibliografía será dinámica.
+[^1]: Aquí es importante recordar que los templates pueden y deben modificarse de acuerdo a lo que uses y necesites.
+
+[^2]: ${vaultDir} = significa la  ubicación de la bóveda de obsidian. Si usas Obsidan sync, por ejemplo, puedes aprovechar y crear un folder para "Pandoc" que contenga todo lo que se necesita para exportar: archivo de referencia y filtro lua. Si no usas obsidian sync y pusiste las cosas en otro lugar, **necesitas poner su ubicación**.
+
+[^3]: lua filter `zotero.lua`= este filtro básicamente hace que las referencias Pandoc al pasar al documento Word sean editables para el add-on de Zotero. La ventaja de usarlo así es que las citas seguirán siendo configurables en Word y la bibliografía será dinámica.
 
 ---
 
