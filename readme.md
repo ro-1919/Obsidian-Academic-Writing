@@ -15,6 +15,7 @@ El workflow en pocas palabras:
 3. Opcional: descargar [Conector](https://www.zotero.org/download/connectors) de Zotero para buscadores
 4. En Configuraciones de Zotero
     - Better BibTeX > Citation key Formula: decide cómo quieres que sean tus [citations key](https://retorque.re/zotero-better-bibtex/citing/index.html). Por ejemplo, esta es mi fórmula: `authEtAl + "_" + shorttitle(2, 2) + "_" + year` -> `Foucault_VigilarCastigar_2003` o `Apellido_TítuloTítulo_Año`. Si hay más de un autor sólo incluye un apellido y agrega EtAl. Sobre el título, sólo incluye las dos primeras palabras.
+    - Es posible usar tu nube (iCloud, Google Drive, Synology NAS) para guardar archivos. Hay dos formas, usar un plugin como [zotmoov](https://github.com/wileyyugioh/zotmoov) o usar [WebDAV](https://www.zotero.org/support/sync). Aunque la primera opción es relativamente fácil y evita pagar la subscripción de zotero, su principal defecto es que no pueden usarse archivos enlazados en tabletas. WebDAV es, en pocas palabras, proporcionar tu propio servidor para guardar tus documentos.
 
 ### Pandoc:
 1. Instalar [Pandoc](https://pandoc.org/installing.html). Recomiendo que se instale a través de un administrador de paquetes. Si se hace así, Pandoc se instalará en donde el sistema espera. Dicho de otra forma, no va a ser necesario agregar su ubicación en Obsidian porque va a estar donde *generalmente* está:
@@ -30,8 +31,8 @@ El workflow en pocas palabras:
     - **Zotero Integration** (Permite importar notas, subrayados e información de citas de Zotero a Obsidian. Para configurarlo: [Zotero Importer, template and button to update note](hhttps://gist.github.com/FeralFlora/78f494c1862ce4457cef28d9d9ba5a01))[¹]
     - **Enhancing Export** (Permite exporar con Pandoc desde Obsidian, abajo la información de cómo configurarlo)
     - **Pandoc Reference List** (Se conecta con Zotero para recomendar Citation Keys al comenzar a escribirlas Tambien renderiza la cita para que aparezca en formato "Autor, # pag.")
-    - Longform (Hace que obsidian funcione como Scrivener, permitiendo crear un proyecto que contenga múltiples notas que después puede compilarse en un solo documento)
-    - Meta Bind (Permite crear botones y modificar la metadata desde el cuerpo de las notas)
+    - Longform (Hace que obsidian funcione como Scrivener, permitiendo crear un proyecto que contenga múltiples notas que después puede compilarse en un solo documento. Revisar [scripts](./longform-scripts/) para complilación)
+    - Meta Bind (Permite crear botones y modificar la metadata desde el cuerpo de las notas, necesario para el botón de importar notas)
     - Templater (Automatizar templates)
     - List Callout (Necesario si sigues el template de FeralFlora)
 3. Recomendados:
